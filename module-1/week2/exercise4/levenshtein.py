@@ -1,22 +1,25 @@
-def levenshtein_distance(s1: str, s2: str) -> int:
-    if len(s1) < len(s2):
-        return levenshtein_distance(s2, s1)
+def levenshtein_distance(source: str, target: str) -> int:
 
-    previous_row = range(len(s2) + 1)
+    if len(source) < len(target):
+        return levenshtein_distance(target, source)
 
-    for i, c1 in enumerate(s1):
-        current_row = [i + 1]
-        for j, c2 in enumerate(s2):
-            insertions = previous_row[j + 1] + 1
-            deletions = current_row[j] + 1
-            substitutions = previous_row[j] + (c1 != c2)
+    previous_row = range(len(target) + 1)
+
+    for source_index, source_char in enumerate(source):
+        current_row = [source_index + 1]
+        for target_index, target_char in enumerate(target):
+            insertions = previous_row[target_index + 1] + 1
+            deletions = current_row[target_index] + 1
+            substitutions = previous_row[target_index] + \
+                (source_char != target_char)
             current_row.append(min(insertions, deletions, substitutions))
         previous_row = current_row
 
     return previous_row[-1]
 
 
-s1 = "kitten"
-s2 = "sitting"
-distance = levenshtein_distance(s1, s2)
-print(f"The Levenshtein distance between '{s1}' and '{s2}' is {distance}.")
+source_string = "kitten"
+target_string = "sitting"
+distance = levenshtein_distance(source_string, target_string)
+print(
+    f"The Levenshtein distance between '{source_string}' and '{target_string}' is {distance}.")
