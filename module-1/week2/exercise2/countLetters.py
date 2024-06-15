@@ -1,4 +1,4 @@
-def countLetters(word: str) -> dict:
+def count_letters(word: str) -> dict:
 
     letter_count = {}
 
@@ -12,4 +12,4 @@ def countLetters(word: str) -> dict:
 
 
 input_word = "Happiness"
-print(countLetters(input_word))
+print(count_letters(input_word))

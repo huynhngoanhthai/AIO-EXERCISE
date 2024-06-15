@@ -1,7 +1,7 @@
 import re
 
 
-def countWordsInFile(file_path: str) -> dict:
+def count_words_in_file(file_path: str) -> dict:
     word_count = {}
 
     try:
@@ -25,4 +25,4 @@ def countWordsInFile(file_path: str) -> dict:
 
 
 file_path = '/home/anhthai/AIO/Exercise/data/P1_data.txt'
-print(countWordsInFile(file_path))
+print(count_words_in_file(file_path))
