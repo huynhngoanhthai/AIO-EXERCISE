@@ -7,11 +7,11 @@ def recall(tp: int, fn: int) -> float:
     return tp/(tp + fn)
 
 
-def f1_score(precision: float, recall: float) -> float:
+def f1Score(precision: float, recall: float) -> float:
     return 2 * (precision * recall)/(precision + recall)
 
 
-def check_input_error(fn: int, tp: int, fp: int) -> None:
+def checkInputError(fn: int, tp: int, fp: int) -> None:
     if not isinstance(tp, int):
         raise ValueError("tp must be integers")
     if not isinstance(fn, int):
@@ -24,15 +24,20 @@ def check_input_error(fn: int, tp: int, fp: int) -> None:
 
 def exercise1(fn, tp, fp) -> None:
     try:
-        check_input_error(fn, tp, fp)
-        precision_value = precision(tp, fp)
-        recall_value = recall(tp, fn)
-        f1_score_value = f1_score(precision_value, recall_value)
-        print('precision is', precision_value)
-        print('recall is', recall_value)
-        print('F1-score is', f1_score_value)
+        checkInputError(fn, tp, fp)
+        precisionValue = precision(tp, fp)
+        recallValue = recall(tp, fn)
+        f1ScoreValue = f1Score(precisionValue, recallValue)
+        print('precision is', precisionValue)
+        print('recall is', recallValue)
+        print('F1-score is', f1ScoreValue)
     except ValueError as e:
         print(e)
 
 
+# exercise1(tp=0, fp=3, fn=4)
+# exercise1(tp=2, fp=3, fn=4)
+# exercise1(tp=9, fp=3, fn=4)
+# exercise1(tp=0, fp=0, fn=0)
+# exercise1(tp=2.1, fp=3, fn=0)
 exercise1(tp=2, fp=4, fn=5)

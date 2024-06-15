@@ -40,7 +40,7 @@ def cosh_approx(x: float, n: int) -> float:
     return result
 
 
-def exercise4() -> None:
+def exercixe4() -> None:
     x = float(input("Enter the value of x in radians: "))
     n = int(
         input("Enter the number of terms for the approximation (positive integer): "))
@@ -54,4 +54,4 @@ def exercise4() -> None:
         print(f"cosh({x}) ≈ {cosh_approx(x, n)}")
 
 
-exercise4()
+exercixe4()
