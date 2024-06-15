@@ -14,7 +14,7 @@ def elu(x: float) -> float:
     return x if x > 0 else alpha * (math.exp(x) - 1)
 
 
-def is_number(value) -> bool:
+def is_number(value: float) -> bool:
     try:
         float(value)
         return True
