@@ -4,7 +4,7 @@ class Person:
         self.yob = yob
 
     def describe(self) -> None:
-        # pass
+        # pass code here
         pass
 
 

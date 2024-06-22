@@ -35,7 +35,5 @@ try:
     queue.enqueue(3)
     print(queue.is_full())
     queue.enqueue(4)
-    print(queue.dequeue())
-    print(queue.front())
 except OverflowError as e:
     print(e)

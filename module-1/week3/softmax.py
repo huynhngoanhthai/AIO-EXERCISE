@@ -30,4 +30,3 @@ softmax = Softmax()
 softmax_stable = SoftmaxStable()
 
 print("Softmax:", softmax(x))
-print("Softmax Stable:", softmax_stable(x))

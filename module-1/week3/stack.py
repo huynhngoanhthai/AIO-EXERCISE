@@ -29,7 +29,7 @@ class Stack:
 try:
     stack = Stack(capacity=3)
     stack.push(1)
-    stack.push(2)
     print(stack.top())
+    stack.push(2)
 except OverflowError as e:
     print(e)
