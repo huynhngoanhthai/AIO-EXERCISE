@@ -31,6 +31,18 @@
 4. **Run Example Scripts**:
    Check out the `examples` directory to see practical implementations and usage of the AIO concepts discussed.
 
+### Result
+
+Below are three images representing the results of the chatbot, object detection, and word correction modules:
+
+#### Chatbot
+![Chatbot Result](image/chatbot.png)
+
+#### Object Detection
+![Object Detection Result](image/object_detection.png)
+
+#### Word Correction
+![Word Correction Result](image/wordCorrection.png)
 ### Contributing
 
 We welcome contributions to improve and expand the repository. If you have an idea for an exercise or an improvement, please follow these steps:
