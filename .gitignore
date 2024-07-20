@@ -2,4 +2,4 @@ data
 .vscode
 data/*
 .venv
-content/*
+content
