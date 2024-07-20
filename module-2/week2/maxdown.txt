@@ -1,0 +1,67 @@
+Để hoàn chỉnh biểu thức cho ma trận nghịch đảo $A^{-1}$ bạn có thể thực hiện các bước sau:
+
+1. **Tính định thức của ma trận \(A\)**:
+   Định thức của ma trận \(A\) được tính như sau:
+   $$
+   \text{det}(A) = (-2) \cdot (-4) - (6) \cdot (8) = 8 - 48 = -40
+   $$
+
+2. **Tính ma trận nghịch đảo**:
+   Ma trận nghịch đảo được tính bằng công thức:
+   $$
+   A^{-1} = \frac{1}{\text{det}(A)} \begin{bmatrix}
+   d & -b \\
+   -c & a
+   \end{bmatrix}
+   $$
+
+   Áp dụng công thức này với ma trận \(A\):
+   $$
+   A = \begin{bmatrix}
+   -2 & 6 \\
+   8 & -4
+   \end{bmatrix}
+   $$
+
+   Ma trận nghịch đảo sẽ là:
+   $$
+   A^{-1} = \frac{1}{-40} \begin{bmatrix}
+   -4 & -6 \\
+   -8 & -2
+   \end{bmatrix}
+   $$
+
+3. **Tính toán ma trận nghịch đảo**:
+   Nhân ma trận với
+   $$
+   A^{-1} = \frac{1}{-40} \begin{bmatrix}
+   -4 & -6 \\
+   -8 & -2
+   \end{bmatrix}
+   = \begin{bmatrix}
+   \frac{-4}{-40} & \frac{-6}{-40} \\
+   \frac{-8}{-40} & \frac{-2}{-40}
+   \end{bmatrix}
+   = \begin{bmatrix}
+   \frac{1}{10} & \frac{3}{20} \\
+   \frac{1}{5} & \frac{1}{20}
+   \end{bmatrix}
+   $$
+
+### Kết quả
+
+$$
+A^{-1} = \begin{bmatrix}
+\frac{1}{10} & \frac{3}{20} \\
+\frac{1}{5} & \frac{1}{20}
+\end{bmatrix}
+$$
+
+Vậy ma trận nghịch đảo của \( A \) là:
+
+$$
+A^{-1} = \begin{bmatrix}
+\frac{1}{10} & \frac{3}{20} \\
+\frac{1}{5} & \frac{1}{20}
+\end{bmatrix}
+$$
