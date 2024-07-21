@@ -40,18 +40,7 @@ def matrix_multi_matrix(matrix1: np.array, matrix2: np.array) -> np.array:
 
 
 def inverse_matrix(matrix: np.array) -> np.array:
-    if matrix.shape != (2, 2):
-        raise ValueError("Ma trận phải là ma trận 2x2.")
-
-    a, b = matrix[0]
-    c, d = matrix[1]
-
-    det = a * d - b * c
-
-    if det == 0:
-        raise ValueError("Ma trận không khả nghịch (det(A) = 0).")
-
-    result = (1 / det) * np.array([[d, -b], [-c, a]])
+    result = np.linalg.inv(matrix)
 
     return result
 
@@ -62,9 +51,8 @@ def compute_eigenvalues_eigenvectors(matrix: np.array):
 
     return eigenvalues, eigenvectors
 
+
 # G
-
-
 def compute_cosine(v1, v2):
     cos_sim = (compute_dot_product(v1, v2)) / \
         (compute_vector_length(v1)*compute_vector_length(v2))
