@@ -3,3 +3,4 @@ data
 data/*
 .venv
 content
+__pycache__
