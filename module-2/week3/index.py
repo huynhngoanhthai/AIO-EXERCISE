@@ -1,4 +1,4 @@
-from Main import *
+from Main import create_train_data, compute_conditional_probability, compute_prior_probablity, get_index_from_value, prediction_play_tennis,  train_naive_bayes, np
 
 
 def question_14() -> None:
@@ -81,11 +81,12 @@ def question_19() -> None:
         print("Ad should not go!")
 
 
-print("Log answer")
+if __name__ == "__main__":
+    print("Log answer")
 
-question_14()
-question_15()
-question_16()
-question_17()
-question_18()
-question_19()
+    question_14()
+    question_15()
+    question_16()
+    question_17()
+    question_18()
+    question_19()
