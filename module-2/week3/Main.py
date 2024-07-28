@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 
 # Create training data
@@ -70,6 +71,7 @@ def train_naive_bayes(train_data):
     return prior_probability, conditional_probability, list_x_name
 
 
+# Prediction
 def prediction_play_tennis(x, list_x_name, prior_probability, conditional_probability):
     x1 = get_index_from_value(x[0], list_x_name[0])
     x2 = get_index_from_value(x[1], list_x_name[1])
@@ -87,3 +89,45 @@ def prediction_play_tennis(x, list_x_name, prior_probability, conditional_probab
         y_pred = 1
 
     return y_pred
+
+
+# Create training data for Iris dataset
+def create_train_data_iris():
+    data = pd.read_csv('data/iris.data.txt', header=None)
+    data.columns = ['sepal_length', 'sepal_width',
+                    'petal_length', 'petal_width', 'class']
+    return data.values
+
+
+# Train Naive Bayes Model for Iris dataset
+def train_gaussian_naive_bayes(train_data):
+    prior_probability = compute_prior_probablity(train_data)
+
+    classes = np.unique(train_data[:, -1])
+    mean_var = {}
+    for c in classes:
+        data_c = train_data[train_data[:, -1] == c][:, :-1].astype(float)
+        mean_var[c] = {
+            'mean': np.mean(data_c, axis=0),
+            'var': np.var(data_c, axis=0)
+        }
+
+    return prior_probability, mean_var
+
+
+# Prediction for Iris dataset
+def prediction_iris(x, prior_probability, mean_var):
+    classes = list(mean_var.keys())
+    posteriors = []
+
+    for c in classes:
+        mean = mean_var[c]['mean']
+        var = mean_var[c]['var']
+        prior = prior_probability[classes.index(c)]
+
+        likelihood = np.prod(1 / np.sqrt(2 * np.pi * var)
+                             * np.exp(- (x - mean) ** 2 / (2 * var)))
+        posterior = prior * likelihood
+        posteriors.append(posterior)
+
+    return np.argmax(posteriors)
