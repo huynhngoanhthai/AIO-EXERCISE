@@ -1,60 +1,49 @@
-# Download dataset : !gdown 1jh2p2DlaWsDo_vEWIcTrNh3mUuXd-cw6
-import pandas as pd
-import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import TfidfVectorizer
+import math
 
 
-def create_data():
-    return pd.read_csv("./vi_text_retrieval.csv")
+class Solution:
+    def calculate_eigenvalues_eigenvectors(self, A):
+        def get_eigenvalues(matrix):
+            a, b = matrix[0][0], matrix[0][1]
+            c, d = matrix[1][0], matrix[1][1]
+
+            trace = a + d
+            determinant = a * d - b * c
+            discriminant = trace**2 - 4 * determinant
+
+            if discriminant < 0:
+                raise ValueError(
+                    "Eigenvalues are complex and cannot be computed with the math library.")
+
+            sqrt_discriminant = math.sqrt(discriminant)
+            eigenvalue1 = (trace + sqrt_discriminant) / 2
+            eigenvalue2 = (trace - sqrt_discriminant) / 2
+
+            return eigenvalue1, eigenvalue2
+
+        def get_eigenvector(matrix, eigenvalue):
+            a, b = matrix[0][0], matrix[0][1]
+            c, d = matrix[1][0], matrix[1][1]
+
+            if b != 0:
+                eigenvector = [(eigenvalue - d) / b, 1]
+            else:
+                eigenvector = [1, (eigenvalue - a) / c]
+
+            norm = math.sqrt(eigenvector[0]**2 + eigenvector[1]**2)
+            eigenvector = [x / norm for x in eigenvector]
+
+            return eigenvector
+
+        eigenvalue1, eigenvalue2 = get_eigenvalues(A)
+        eigenvector1 = get_eigenvector(A, eigenvalue1)
+        eigenvector2 = get_eigenvector(A, eigenvalue2)
+
+        # Create dictionary with eigenvalues as keys and eigenvectors as values
+        return {eigenvalue1: eigenvector1, eigenvalue2: eigenvector2}
 
 
-def process_text_data():
-    vi_data_df = create_data()
-    context = vi_data_df['text']
-    context = [doc.lower() for doc in context]
-
-    tfidf_vectorizer = TfidfVectorizer()
-    context_embedded = tfidf_vectorizer.fit_transform(context)
-    value = context_embedded.toarray()[7][0]
-    return value
-
-
-def tfidf_search(question, tfidf_vectorizer, context_embedded, top_d=5):
-    question = question.lower()
-
-    query_embedded = tfidf_vectorizer.transform([question])
-
-    cosine_scores = cosine_similarity(
-        query_embedded, context_embedded).flatten()
-
-    results = []
-    for idx in cosine_scores.argsort()[-top_d:][::-1]:
-        doc_score = {
-            'id': idx,
-            'cosine_score': cosine_scores[idx]
-        }
-        results.append(doc_score)
-
-    return results
-
-
-def corr_search(question, tfidf_vectorizer, context_embedded, top_d=5):
-    question = question.lower()
-
-    query_embedded = tfidf_vectorizer.transform([question])
-
-    corr_scores = np.corrcoef(query_embedded.toarray(),
-                              context_embedded.toarray())
-
-    corr_scores = corr_scores[0][1:]
-
-    results = []
-    for idx in corr_scores.argsort()[-top_d:][::-1]:
-        doc = {
-            'id': idx,
-            'corr_score': corr_scores[idx]
-        }
-        results.append(doc)
-
-    return results
+# Example usage:
+sol = Solution()
+A = [[2, 1], [1, 2]]
+print(sol.calculate_eigenvalues_eigenvectors(A))
